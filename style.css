@@ -1,0 +1,608 @@
+/* --- VARIABLES Y RESET --- */
+:root {
+    --color-primary: #f0f8ff; /* Blanco Azulado (Fondo Sidebar Claro) */
+    --color-secondary: #008cba; /* Azul Claro (Títulos y Acabados) */
+    --color-tertiary: #5f9ea0; /* Azul Grisáceo (Texto en Sidebar) */
+    --color-background: #fdfdff; /* Fondo muy claro, casi blanco puro */
+    --color-text: #333;
+    --color-white: #ffffff;
+    --color-accent: #66cdaa; /* Verde Menta (Acento Saludable y Barras) */
+
+    /* Colores únicos para las 7 barras de experiencia */
+    --color-exp-1: #008cba; /* Azul principal (EMERMEDICA) */
+    --color-exp-2: #28a745; /* Verde (Forja Empresas) */
+    --color-exp-3: #ffc107; /* Amarillo (L&H Laboratorios) */
+    --color-exp-4: #dc3545; /* Rojo (Cuidarte tu Salud IPS) */
+    --color-exp-5: #6f42c1; /* Morado (Américas BPO) */
+    --color-exp-6: #17a2b8; /* Turquesa (Clínica la Asunción) */
+    --color-exp-7: #fd7e14; /* Naranja (Coomeva) */
+}
+
+* {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    padding: 20px;
+    padding-top: 70px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    min-height: 100vh;
+}
+
+.cv-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; 
+    max-width: 1200px;
+    width: 100%;
+    background: var(--color-white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* --- Botón de Imprimir (FIJO) --- */
+#print-button {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; 
+}
+
+#print-button:hover {
+    background-color: #58b69b;
+}
+
+/* --- CABECERA y PERFIL --- */
+.profile-section {
+    background-color: var(--color-secondary); 
+    color: var(--color-white);
+    padding: 25px; 
+    text-align: center;
+    grid-column: 1 / 3; 
+}
+
+.profile-section h1 {
+    margin: 10px 0 5px 0;
+    font-size: 2.4em; 
+}
+
+.profile-section h2 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.3em; 
+    color: var(--color-white);
+    border: none;
+}
+
+.photo-container {
+    width: 130px; 
+    height: 130px;
+    margin: 0 auto 15px;
+    border-radius: 50%; 
+    overflow: hidden;
+    border: 5px solid var(--color-white); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
+}
+
+#profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* -------------------- BARRA LATERAL (Sidebar) -------------------- */
+.sidebar {
+    background-color: var(--color-primary); 
+    color: var(--color-text);
+    padding: 25px; 
+    border-right: 1px solid #eee;
+}
+
+.info-box {
+    margin-bottom: 30px; 
+}
+
+.sidebar h3 {
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 8px; 
+    margin-bottom: 15px; 
+    font-size: 1.2em; 
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px; 
+    font-size: 0.95em; 
+    color: var(--color-tertiary);
+    display: flex; 
+    align-items: flex-start; 
+}
+
+.sidebar i {
+    margin-right: 10px; 
+    color: var(--color-accent); 
+    font-size: 1.2em; 
+    line-height: 1.6; 
+}
+
+/* --- Estilos para la lista de cursos con salto de línea y ícono --- */
+.course-list-custom {
+    padding-left: 0;
+}
+
+.course-item {
+    font-size: 0.95em; 
+    color: var(--color-tertiary);
+    margin-bottom: 15px; 
+    padding-left: 20px; 
+    position: relative;
+}
+
+.course-item::before {
+    content: '★'; 
+    color: var(--color-accent);
+    font-size: 1em;
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Estilos para Educación Básica */
+.education-info h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+.education-info h4 i {
+    margin-right: 8px;
+}
+
+.course-list li {
+    list-style: none; 
+    margin-left: 0; 
+    margin-bottom: 5px;
+    color: var(--color-tertiary);
+    padding-left: 0;
+}
+
+/* -------------------- BARRAS DE HABILIDADES -------------------- */
+.skill-bar-container {
+    margin-bottom: 15px;
+}
+
+.skill-bar-container p {
+    margin: 0 0 5px 0;
+    font-size: 0.95em;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.skill-bar {
+    background-color: #e0e9f0; 
+    height: 10px; 
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-filler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--color-accent); 
+    transition: width 1s ease-out;
+    width: 0; 
+}
+
+
+/* -------------------- CONTENIDO PRINCIPAL -------------------- */
+.main-content {
+    padding: 30px;
+}
+
+.main-content h2 {
+    color: var(--color-secondary);
+    border-bottom: 2px solid var(--color-accent); 
+    padding-bottom: 12px; 
+    margin-bottom: 25px; 
+    font-size: 1.6em; 
+    display: flex;
+    align-items: center;
+}
+
+.main-content h2 i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: var(--color-secondary);
+}
+
+
+/* --- Experiencia Laboral (Estilos Generales) --- */
+.job-entry {
+    margin-bottom: 30px; 
+    padding: 20px; 
+    border-left: 5px solid; 
+    background-color: var(--color-white); 
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.job-entry:hover {
+    box-shadow: 0 4px 15px rgba(102, 205, 170, 0.6); 
+}
+
+.job-entry h3 {
+    color: var(--color-secondary);
+    margin: 0 0 8px 0;
+    font-size: 1.3em; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job-entry h3 i {
+    font-size: 1.1em;
+    margin-left: 15px; 
+    flex-shrink: 0; 
+}
+
+.job-entry p.company {
+    font-size: 1em;
+    color: var(--color-text);
+    margin-bottom: 5px;
+}
+
+.job-entry span.period {
+    font-size: 0.9em;
+    color: var(--color-tertiary);
+    display: block; 
+    margin-bottom: 15px; 
+}
+
+.responsibilities {
+    list-style-type: '💉 '; 
+    padding-left: 20px;
+    font-size: 0.95em;
+    margin-top: 10px;
+}
+
+.responsibilities li {
+    margin-bottom: 5px;
+    padding-left: 5px; 
+    display: flex;
+    align-items: flex-start;
+}
+
+.supervisor {
+    font-size: 0.9em;
+    color: var(--color-text);
+    border-top: 1px dashed #ccc;
+    padding-top: 10px; 
+    margin-top: 20px; 
+}
+
+/* Estilos para las experiencias de "menos prioridad" */
+.job-entry.less-priority {
+    padding: 15px 20px; 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.job-entry.less-priority .company,
+.job-entry.less-priority h3 {
+    color: var(--color-tertiary); 
+}
+
+/* Colores únicos para las barras de experiencia */
+.job-entry-color-1 { border-left-color: var(--color-exp-1); }
+.job-entry-color-2 { border-left-color: var(--color-exp-2); }
+.job-entry-color-3 { border-left-color: var(--color-exp-3); }
+.job-entry-color-4 { border-left-color: var(--color-exp-4); }
+.job-entry-color-5 { border-left-color: var(--color-exp-5); }
+.job-entry-color-6 { border-left-color: var(--color-exp-6); }
+.job-entry-color-7 { border-left-color: var(--color-exp-7); }
+
+
+/* --- Línea de Tiempo de Formación (Icono Corregido) --- */
+.timeline {
+    position: relative;
+    padding-left: 40px; 
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px; 
+    width: 2px;
+    height: 100%;
+    background: #ccc;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px; 
+    padding-left: 40px; /* Asegura espacio para el icono */
+}
+
+.timeline-item::before {
+    content: '🎓';
+    position: absolute;
+    width: 28px; 
+    height: 28px;
+    background: var(--color-white);
+    left: 0px; /* Ajuste para evitar superposición con el texto */
+    top: 0px;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 0.9em; 
+    line-height: 28px; 
+    text-align: center;
+    border: 2px solid var(--color-accent);
+}
+
+.timeline-item h4 {
+    font-size: 1.2em;
+    color: var(--color-secondary);
+    margin-bottom: 5px;
+}
+
+.timeline-item p.institution {
+    font-size: 1em;
+    color: var(--color-text);
+    margin-bottom: 3px;
+}
+
+.timeline-item span.date {
+    font-size: 0.9em;
+    color: var(--color-tertiary);
+    display: block;
+}
+
+
+/* ======================================================= */
+/* ====== RESPONSIVIDAD: VISTA MÓVIL (MENOS DE 768px) ====== */
+/* ======================================================= */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        padding-top: 70px; 
+    }
+
+    .cv-container {
+        grid-template-columns: 1fr; 
+        border-radius: 0; 
+    }
+
+    .profile-section {
+        padding: 20px;
+    }
+
+    .profile-section h1 {
+        font-size: 1.8em;
+    }
+
+    .profile-section h2 {
+        font-size: 1em;
+    }
+
+    .photo-container {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+
+    .sidebar, .main-content {
+        padding: 20px;
+    }
+
+    .main-content h2 {
+        font-size: 1.4em;
+    }
+
+    .job-entry h3 {
+        font-size: 1.1em;
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .job-entry h3 i {
+        margin-top: 0; 
+        margin-right: 0;
+    }
+
+    .responsibilities {
+        padding-left: 15px;
+    }
+    
+    .timeline {
+        padding-left: 30px;
+    }
+    
+    .timeline::before {
+        left: 10px;
+    }
+    
+    .timeline-item {
+        padding-left: 30px; 
+    }
+
+    .timeline-item::before {
+        left: -2px; 
+        width: 24px;
+        height: 24px;
+        font-size: 0.8em;
+        line-height: 24px;
+    }
+}
+
+
+/* ======================================================= */
+/* ================= ESTILOS DE IMPRESIÓN ================= */
+/* ======================================================= */
+@media print {
+    body {
+        padding: 0;
+        padding-top: 0; 
+    }
+
+    #print-button {
+        display: none; 
+    }
+
+    .cv-container {
+        box-shadow: none;
+        grid-template-columns: 30% 70%; 
+        border-radius: 0;
+    }
+    
+    .profile-section {
+        padding: 15px; 
+    }
+
+    .profile-section h1 {
+        font-size: 1.6em;
+    }
+    .profile-section h2 {
+        font-size: 0.9em;
+    }
+
+    .photo-container {
+        width: 90px;
+        height: 90px;
+        border-width: 2px;
+        box-shadow: none; 
+    }
+
+    .sidebar, .main-content {
+        padding: 15px; 
+    }
+    
+    .sidebar h3, .main-content h2 {
+        font-size: 1em; 
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .sidebar li, .course-list li, .job-entry p, .job-entry span, .supervisor, .course-item {
+        font-size: 0.8em; 
+        margin-bottom: 3px;
+        line-height: 1.3;
+    }
+    
+    .course-item {
+        margin-bottom: 5px !important; 
+        padding-left: 15px;
+    }
+    
+    .course-item::before {
+        font-size: 0.9em;
+        left: -2px;
+    }
+
+
+    .job-entry {
+        padding: 10px;
+        margin-bottom: 15px;
+        box-shadow: none;
+    }
+
+    .job-entry h3 {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+
+    .responsibilities {
+        list-style-type: '💉 ';
+        padding-left: 15px;
+        margin-top: 5px;
+    }
+    
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline::before {
+        left: 8px;
+    }
+
+    .timeline-item {
+        padding-left: 25px; 
+    }
+
+    .timeline-item::before {
+        left: 0px; 
+        width: 20px;
+        height: 20px;
+        font-size: 0.7em;
+        line-height: 20px;
+        border-width: 1px;
+    }
+
+    /* Asegurar que los colores se impriman */
+    .sidebar,
+    .skill-filler,
+    .job-entry,
+    .timeline-item::before,
+    .profile-section {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        background-color: transparent !important;
+        border-color: #ccc !important;
+    }
+    
+    .sidebar {
+        background-color: var(--color-primary) !important; 
+    }
+
+    .profile-section {
+        background-color: var(--color-secondary) !important;
+    }
+    
+    .skill-filler {
+        background-color: var(--color-accent) !important; 
+    }
+    
+    /* Asegurar texto oscuro para legibilidad */
+    .sidebar,
+    .sidebar li,
+    .course-list li,
+    .main-content,
+    .job-entry p,
+    .job-entry span,
+    .supervisor,
+    .course-item {
+        color: #000 !important;
+    }
+}

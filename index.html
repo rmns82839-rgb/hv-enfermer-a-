@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Vida - Ivan David Montes Arrieta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(container => {
+                const level = container.getAttribute('data-level');
+                const filler = document.createElement('div');
+                filler.className = 'skill-filler';
+                container.appendChild(filler);
+                // Usar setTimeout para que la animación se dispare después de que la página se cargue
+                setTimeout(() => {
+                    filler.style.width = level + '%';
+                }, 100); 
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <button id="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir a PDF
+    </button>
+
+    <div class="cv-container">
+        
+        <header class="profile-section">
+            <div class="photo-container">
+                <img id="profile-photo" src="ruta/a/tu/foto.jpg" alt="Foto de Perfil de Ivan David Montes Arrieta">
+            </div>
+            <h1>Ivan David Montes Arrieta</h1>
+            <h2>AUXILIAR EN ENFERMERÍA</h2>
+        </header>
+
+        <section class="sidebar">
+            <div class="contact-info info-box">
+                <h3><i class="fas fa-heart-pulse"></i> Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-mobile-alt"></i> (+57) 305 449 45 34</li>
+                    <li><i class="fas fa-at"></i> Idamar1214@hotmail.com</li>
+                    <li><i class="fas fa-fingerprint"></i> Identificación: 1126242776</li>
+                </ul>
+            </div>
+
+            <div class="about-me info-box">
+                <h3><i class="fas fa-star-of-life"></i> Acerca de Mí</h3>
+                <p>Cumplidor de mis deberes, capaz de desempeñarme en el logro de los objetivos que me sean asignados, soy una persona seria, responsable, colaborador, puntual, analítica, con capacidad de adaptación, liderazgo y recursividad para afrontar y dar respuestas ante cualquier situación técnica y humana presentada.</p>
+            </div>
+
+            <div class="skills-info info-box">
+                <h3><i class="fas fa-hand-holding-heart"></i> Habilidades</h3>
+                <div class="skill-bar-container">
+                    <p>Liderazgo</p>
+                    <div class="skill-bar" data-level="90"></div>
+                </div>
+                <div class="skill-bar-container">
+                    <p>Comunicación Asertiva</p>
+                    <div class="skill-bar" data-level="85"></div>
+                </div>
+                <div class="skill-bar-container">
+                    <p>Resolución de Problemas</p>
+                    <div class="skill-bar" data-level="95"></div>
+                </div>
+                <div class="skill-bar-container">
+                    <p>Trabajo en Equipo</p>
+                    <div class="skill-bar" data-level="90"></div>
+                </div>
+            </div>
+            <div class="education-info info-box">
+                <h3><i class="fas fa-file-certificate"></i> Otros Cursos y Formación</h3>
+                <div class="course-list-custom">
+                    <div class="course-item">Curso Cálculo Dilución y Administración de Medicamentos (2024, Fundación Nuestra Señora de la Esperanza)</div>
+                    <div class="course-item">Curso Soporte Vital Básico RCP (BLS) (2024, Fundación Nuestra Señora de la Esperanza)</div>
+                    <div class="course-item">Atención Integral a Víctimas de Violencia Sexual (2023, Fundación Nuestra Señora de la Esperanza)</div>
+                    <div class="course-item">Curso Protocolos en la Toma y Transporte de Muestras de Laboratorio (2023, Fundación Nuestra Señora de la Esperanza)</div>
+                    <div class="course-item">Soporte Vital Básico (2016, Centro INCA LTDA)</div>
+                    <div class="course-item">Primeros Auxilios (2013, Cruz Roja Colombiana)</div>
+                    <div class="course-item">Manipulación de Alimentos (2013, Centro INCA LTDA)</div>
+                    <div class="course-item">Seminario Humanización en la atención en enfermería (2014, Centro INCA LTDA)</div>
+                    <div class="course-item">Seminario VIII Jornada Materno Infantil Cardiovascular (2015, Clínica la Asunción)</div>
+                </div>
+                <h4><i class="fas fa-school"></i> Educación Básica</h4>
+                <ul class="course-list">
+                    <li>Bachiller Académico (2006, Institución Educativa Manuel Edmundo Mendoza)</li>
+                </ul>
+            </div>
+            
+            <div class="references info-box">
+                <h3><i class="fas fa-thumbs-up"></i> Referencias</h3>
+                
+                <h4>Personales</h4>
+                <ul>
+                    <li><i class="fas fa-user-circle"></i> Camilo Miranda, Enfermero. Cel. 3507192050</li>
+                    <li><i class="fas fa-user-circle"></i> Elizabeth Mozo, Pensionada. Cel. 315 3068795</li>
+                </ul>
+                
+                <h4>Familiares</h4>
+                <ul>
+                    <li><i class="fas fa-users"></i> Laura Pineda, Estudiante. Cel. 3214901587</li>
+                    <li><i class="fas fa-users"></i> Janis Mercado, Oficios Varios. Cel. 3224356765</li>
+                </ul>
+            </div>
+        </section>
+
+        <main class="main-content">
+            
+            <section class="education-main">
+                <h2><i class="fas fa-staff-snake"></i> Formación Profesional</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Auxiliar en Enfermería</h4>
+                        <p class="institution">Centro INCA LTDA</p>
+                        <span class="date">2016</span>
+                    </div>
+                </div>
+            </section>
+            
+            <hr>
+
+            <section class="experience">
+                <h2><i class="fas fa-ambulance"></i> Experiencia Laboral</h2>
+                
+                <div class="job-entry job-entry-color-1">
+                    <h3>Auxiliar de Laboratorio Motorizado <i class="fas fa-vial" style="color: var(--color-accent);"></i></h3>
+                    <p class="company">EMERMEDICA</p>
+                    <span class="period">10 de abril del 2024 hasta la fecha</span>
+                    <ul class="responsibilities">
+                        <li>Toma y transporte de muestras de laboratorio.</li>
+                        <li>Seguimiento de protocolos de bioseguridad.</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Magda Mahecha | Contacto: 3174284202</p>
+                </div>
+
+                <div class="job-entry job-entry-color-2">
+                    <h3>Auxiliar de Enfermería Motorizado <i class="fas fa-user-nurse" style="color: var(--color-secondary);"></i></h3>
+                    <p class="company">Forja Empresas</p>
+                    <span class="period">Desde el 17 de Agosto de 2022 al 15 de marzo del 2024</span>
+                    <ul class="responsibilities">
+                        <li>Administración de medicamentos.</li>
+                        <li>Cambio de sonda vesical.</li>
+                        <li>Toma de laboratorios.</li>
+                        <li>Curación de heridas.</li>
+                        <li>Implantación de catéter subcutáneos. ETC</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Marcela Arévalo | Contacto: 3046646899</p>
+                </div>
+
+                <div class="job-entry less-priority job-entry-color-3">
+                    <h3>Auxiliar de Enfermería Motorizado <i class="fas fa-syringe" style="color: var(--color-tertiary);"></i></h3>
+                    <p class="company">L&H Laboratorios</p>
+                    <span class="period">31 de marzo de 2022 al 17 de agosto del 2022</span>
+                    <ul class="responsibilities">
+                        <li>Toma de laboratorios a domicilio.</li>
+                        <li>Vacunación.</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Doctora Lisbeth Morales | Contacto: 3043948357</p>
+                </div>
+                
+                <div class="job-entry less-priority job-entry-color-4">
+                    <h3>Auxiliar de Enfermería Motorizado <i class="fas fa-briefcase-medical" style="color: var(--color-tertiary);"></i></h3>
+                    <p class="company">Cuidarte tu Salud IPS</p>
+                    <span class="period">18 de febrero de 2020 al 15 de marzo del 2022</span>
+                    <ul class="responsibilities">
+                        <li>Canalización, administración de medicamentos.</li>
+                        <li>Cambio de sonda vesical, toma de laboratorios.</li>
+                        <li>Curación de heridas e implantación de catéter subcutáneos.</li>
+                    </ul>
+                    <p class="supervisor">Ver detalles en el cuerpo del CV.</p>
+                </div>
+
+                <div class="job-entry less-priority job-entry-color-5">
+                    <h3>Asesor Call Center (Salud) <i class="fas fa-headset" style="color: var(--color-tertiary);"></i></h3>
+                    <p class="company">Américas BPO</p>
+                    <span class="period">15 diciembre de 2019 al 18 de febrero de 2020</span>
+                    <ul class="responsibilities">
+                        <li>Gestión de cambios de IPS, validación de incapacidades y asignación/cancelación de citas.</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Daniel Jiménez | Contacto: 3229476559</p>
+                </div>
+                
+                <div class="job-entry job-entry-color-6">
+                    <h3>Auxiliar en Enfermería (Hospitalización) <i class="fas fa-hospital-user" style="color: var(--color-secondary);"></i></h3>
+                    <p class="company">Clínica la Asunción</p>
+                    <span class="period">16 de febrero de 2017 al 17 de agosto de 2019</span>
+                    <ul class="responsibilities">
+                        <li>Atención de pacientes en sala, canalización, monitoreo fetal y administración de medicamentos.</li>
+                        <li>Atención de pacientes en urgencias (canalización, EKG, administración de medicamento).</li>
+                        <li>Uci (monitoreo de signos vitales, administración de medicamentos, baños en cama).</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Martha Escudero</p>
+                </div>
+                
+                <div class="job-entry less-priority job-entry-color-7">
+                    <h3>Auxiliar en Enfermería (Atención Domiciliaria) <i class="fas fa-house-medical" style="color: var(--color-tertiary);"></i></h3>
+                    <p class="company">Coomeva- Hospital en Casa</p>
+                    <span class="period">16 de septiembre de 2016 hasta el 18 de Diciembre de 2016</span>
+                    <ul class="responsibilities">
+                        <li>Atención de pacientes en casa.</li>
+                        <li>Baño en cama, administración de medicamentos, monitoreo de signos vitales.</li>
+                    </ul>
+                    <p class="supervisor">Jefe Inmediato: Milena Aguirre | Contacto: 3199599</p>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
