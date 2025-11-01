@@ -1,124 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Elementos del DOM ---
-    const loginPage = document.getElementById('login-page');
-    const productsPage = document.getElementById('products-page');
-    const cartPage = document.getElementById('cart-page');
-    const thankyouPage = document.getElementById('thankyou-page');
-    const pqrPage = document.getElementById('pqr-page');
+    
+    // 1. Lógica para animar las Barras de Habilidad
+    // Esta función busca todos los elementos con la clase 'skill-bar'
+    const skillBars = document.querySelectorAll('.skill-bar');
 
-    const loginForm = document.getElementById('login-form');
-    const viewCartBtn = document.getElementById('view-cart-btn');
-    const backToProductsBtn = document.getElementById('back-to-products-btn');
-    const checkoutBtn = document.getElementById('checkout-btn');
-    const backToHomeBtn = document.getElementById('back-to-home-btn');
-    const pqrBtn = document.getElementById('pqr-btn');
-    const backFromPqrBtn = document.getElementById('back-from-pqr-btn');
+    skillBars.forEach(bar => {
+        const level = bar.getAttribute('data-level'); // Obtiene el valor de habilidad (ej: "90")
+        
+        // Crear el elemento de relleno (filler) que será visible
+        const filler = document.createElement('div');
+        filler.className = 'skill-filler';
+        bar.appendChild(filler);
+        
+        // Usar un pequeño timeout para forzar la animación
+        // Esto asegura que el CSS se haya renderizado antes de iniciar la transición
+        setTimeout(() => {
+            // Aplicar el ancho al elemento 'skill-filler' para iniciar la animación CSS
+            filler.style.width = level + '%';
+        }, 100); 
+    });
 
-    const productList = document.getElementById('product-list');
-    const cartItemsList = document.getElementById('cart-items');
-    const cartCountSpan = document.getElementById('cart-count');
-    const cartTotalSpan = document.getElementById('cart-total');
 
-    // --- Datos de ejemplo de videojuegos ---
-    const videogames = [
-        { id: 1, name: 'The Witcher 3', price: 59.99, image: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Witcher' },
-        { id: 2, name: 'Cyberpunk 2077', price: 49.99, image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Cyberpunk' },
-        { id: 3, name: 'Red Dead Redemption 2', price: 69.99, image: 'https://via.placeholder.com/150/00FF00/FFFFFF?text=RDR2' },
-        { id: 4, name: 'Elden Ring', price: 39.99, image: 'https://via.placeholder.com/150/FFFF00/000000?text=Elden+Ring' },
-        { id: 5, name: 'God of War', price: 29.99, image: 'https://via.placeholder.com/150/FFA500/000000?text=God+of+War' },
-    ];
+    // 2. Lógica para el Resaltado de la Experiencia Laboral (Interactivo)
+    // Agrega un efecto visual a los trabajos al pasar el mouse/tocar la pantalla
+    const jobEntries = document.querySelectorAll('.job-entry');
 
-    let cart = [];
+    jobEntries.forEach(entry => {
+        // Evento para cuando el cursor entra (o toque en móvil)
+        entry.addEventListener('mouseover', () => {
+            // Se aplica el estilo de sombra al pasar el ratón (desktop)
+            entry.style.boxShadow = '0 4px 12px rgba(40, 167, 69, 0.4)'; 
+        });
+        
+        // Evento para cuando el cursor sale
+        entry.addEventListener('mouseout', () => {
+            // Se quita el estilo de sombra
+            entry.style.boxShadow = 'none'; 
+        });
+    });
 
-    // --- Funciones de navegación entre páginas ---
-    function showPage(page) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        page.classList.add('active');
-    }
-
-    // --- Funciones del carrito ---
-    function renderProducts() {
-        productList.innerHTML = '';
-        videogames.forEach(game => {
-            const productCard = document.createElement('div');
-            productCard.classList.add('product-card');
-            productCard.innerHTML = `
-                <img src="${game.image}" alt="${game.name}">
-                <h3>${game.name}</h3>
-                <p>$${game.price.toFixed(2)}</p>
-                <button data-id="${game.id}">Añadir al Carrito</button>
-            `;
-            productList.appendChild(productCard);
+    // 3. Lógica para el Botón de Imprimir
+    // El evento 'onclick="window.print()"' ya está en el HTML, 
+    // pero podemos asegurar que el botón funcione incluso si se elimina el atributo.
+    const printButton = document.getElementById('print-button');
+    if (printButton) {
+        printButton.addEventListener('click', () => {
+            window.print();
         });
     }
-
-    function updateCart() {
-        cartItemsList.innerHTML = '';
-        let total = 0;
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
-            cartItem.innerHTML = `
-                <span>${item.name}</span>
-                <span>$${item.price.toFixed(2)}</span>
-            `;
-            cartItemsList.appendChild(cartItem);
-            total += item.price;
-        });
-        cartCountSpan.textContent = cart.length;
-        cartTotalSpan.textContent = total.toFixed(2);
-    }
-
-    // --- Event Listeners (Manejo de eventos) ---
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Aquí puedes agregar lógica de validación real
-        console.log('Usuario ha iniciado sesión');
-        showPage(productsPage);
-        renderProducts(); // Renderiza los productos después de iniciar sesión
-    });
-
-    productList.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            const gameId = parseInt(e.target.dataset.id);
-            const gameToAdd = videogames.find(game => game.id === gameId);
-            if (gameToAdd) {
-                cart.push(gameToAdd);
-                updateCart();
-                console.log(`${gameToAdd.name} añadido al carrito.`);
-            }
-        }
-    });
-
-    viewCartBtn.addEventListener('click', () => {
-        showPage(cartPage);
-    });
-
-    backToProductsBtn.addEventListener('click', () => {
-        showPage(productsPage);
-    });
-
-    checkoutBtn.addEventListener('click', () => {
-        // Lógica para procesar la compra (simulada)
-        alert('Compra realizada con éxito!');
-        cart = []; // Vaciar el carrito
-        updateCart();
-        showPage(thankyouPage);
-    });
-
-    backToHomeBtn.addEventListener('click', () => {
-        showPage(loginPage);
-    });
-
-    pqrBtn.addEventListener('click', () => {
-        showPage(pqrPage);
-    });
-
-    backFromPqrBtn.addEventListener('click', () => {
-        showPage(loginPage);
-    });
-
-    // Iniciar la aplicación en la página de login
-    showPage(loginPage);
 });
-
